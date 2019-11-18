@@ -1,4 +1,4 @@
-const Sequelize = require('server/src/setup/sequelize');
+const Sequelize = require('sequelize');
 const appConfig = require('../../config/serverConfig');
 
 const sequelize = new Sequelize(appConfig.MYSQL.DB, appConfig.MYSQL.USER, appConfig.MYSQL.PASSWORD, {
@@ -32,7 +32,7 @@ async function checkDBConnection() {
 }
 
 
-module.export =  {
+module.exports =  {
     Sequelize,
     sequelize,
     checkDBConnection,
