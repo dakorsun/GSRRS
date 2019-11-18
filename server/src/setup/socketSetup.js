@@ -1,5 +1,4 @@
 const socketIO = require('socket.io');
-console.log('a racer connected');
 
 const socketSetup = server => {
     const io = socketIO(server);
