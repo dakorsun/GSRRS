@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require('path');
-const serveStatic = require('serve-static');
+const cors = require('cors');
 
 const serverConfig = require('../../config/serverConfig');
 
@@ -12,6 +12,7 @@ module.exports = app => {
         console.log(req.method, req.url);
         next();
     });
+    app.use(cors());
 
 
     if(serverConfig.NODE_ENV !== 'production') {
