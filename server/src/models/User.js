@@ -1,6 +1,7 @@
-const Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
 
-const {USER_ROLES: {ROLE_RACER, ROLE_ADMIN}} = require('../../util/constants/user');
+import {USER_ROLES} from '../../util/constants/user';
+const {ROLE_RACER, ROLE_ADMIN} = USER_ROLES;
 
 export default (sequelize, DataTypes) => {
     const User = sequelize.define('User', {

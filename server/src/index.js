@@ -1,9 +1,9 @@
-const http = require('http');
-const express = require("express");
+import http from 'http';
+import express from "express";
 
-const expressSetup = require('./setup/expressSetup');
-const socketSetup = require('./setup/socketSetup');
-const serverConfig = require('../config/serverConfig');
+import expressSetup from './setup/expressSetup';
+import socketSetup from './setup/socketSetup';
+import serverConfig from '../config/serverConfig';
 
 
 const app = express();

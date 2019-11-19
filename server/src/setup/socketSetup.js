@@ -1,12 +1,13 @@
-const socketIO = require('socket.io');
+import socketIO from 'socket.io';
+import {SOCKET_RACE_STEP} from '../../../shared/constants/socketActions'
 
-const socketSetup = server => {
+console.log(SOCKET_RACE_STEP);
+
+export default  server => {
     const io = socketIO(server);
     io.on('connection', function (socket) {
         console.log('socket: a client connected');
 
-        socket.emit('SOCKET_RACE_STEP');
+        socket.emit(SOCKET_RACE_STEP);
     });
 };
-
-module.exports = socketSetup;

@@ -1,7 +1,7 @@
-const gpio = require('rpi-gpio');
+import gpio from 'rpi-gpio';
 
 const gpioService = {
 
 };
 
-moduleExports = gpioService;
+export default gpioService;

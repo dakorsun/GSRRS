@@ -1,5 +1,4 @@
-const {sequelize} = require("../setup/sequelize");
-
+import {sequelize} from '../setup/sequelize'
 
 module.exports = {
 

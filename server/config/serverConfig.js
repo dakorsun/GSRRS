@@ -1,4 +1,4 @@
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 
 dotenv.config({path: process.env.NODE_ENV === 'test' ? '.env.test' : null});
 
@@ -19,4 +19,4 @@ const serverConfig = {
     PROJECT_NAME: 'GSRRS'
 };
 
-module.exports = Object.freeze(serverConfig);
+export default Object.freeze(serverConfig);

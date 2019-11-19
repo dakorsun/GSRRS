@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "server": "cross-env NODE_ENV=development node ./src/index.js",
-    "debug": "cross-env NODE_ENV=development node --inspect ./src/index.js",
-    "server:prod": "cross-env NODE_ENV=production node ./src/index.js",
-    "seq-sync": "node server/config/database/syncDatabase.js",
+    "server": "cross-env NODE_ENV=development node -r esm ./src/index.js",
+    "debug": "cross-env NODE_ENV=development node --inspect -r esm ./src/index.js",
+    "server:prod": "cross-env NODE_ENV=production node -r esm ./src/index.js",
+    "seq-sync": "node -r esm server/config/database/syncDatabase.js",
     "seq-migrations": "sequelize db:migrate"
   },
   "dependencies": {
@@ -22,6 +22,7 @@
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "ejs": "^2.7.2",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.5",
     "express-promise-router": "^3.0.3",
