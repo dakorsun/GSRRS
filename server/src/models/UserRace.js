@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 
 
-module.exports =  (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
     const UserRace = sequelize.define('UserRace', {
         id: {
             allowNull: false,

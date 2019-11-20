@@ -2,7 +2,7 @@ import express from "express";
 import path from 'path';
 import cors from 'cors';
 
-const serverConfig = require('../../config/serverConfig');
+import serverConfig from '../../config/serverConfig';
 
 
 export default app => {

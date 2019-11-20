@@ -6,8 +6,10 @@
     "server": "cross-env NODE_ENV=development node -r esm ./src/index.js",
     "debug": "cross-env NODE_ENV=development node --inspect -r esm ./src/index.js",
     "server:prod": "cross-env NODE_ENV=production node -r esm ./src/index.js",
-    "seq-sync": "node -r esm server/config/database/syncDatabase.js",
-    "seq-migrations": "sequelize db:migrate"
+    "seq-sync": "node -r esm ./config/database/syncDatabase.js",
+    "seq-migrations": "sequelize db:migrate",
+    "seed": "node -r esm ./config/database/seed.js",
+    "drop": "node -r esm ./config/database/drop.js"
   },
   "dependencies": {
     "JSONStream": "^1.3.5",

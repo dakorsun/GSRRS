@@ -1,8 +1,8 @@
 import Sequelize from 'sequelize';
 
 
-models.exports = (sequelize, DataTypes) => {
-    const CupRace = sequelize.define('Cup', {
+export default (sequelize, DataTypes) => {
+    const Cup = sequelize.define('Cup', {
         id: {
             allowNull: false,
             primaryKey: true,
@@ -13,11 +13,11 @@ models.exports = (sequelize, DataTypes) => {
         tableName: 'cup',
     });
 
-    CupRace.prototype.toFullJSON = async function toFullJSON() {
+    Cup.prototype.toFullJSON = async function toFullJSON() {
         return {};
     };
 
-    CupRace.associate = function ({Cup}) {
+    Cup.associate = function ({Cup}) {
 
     };
     return Cup;

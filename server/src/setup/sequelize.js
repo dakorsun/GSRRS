@@ -1,9 +1,9 @@
 import Sequelize from 'sequelize';
-import  appConfig from '../../config/serverConfig';
+import serverConfig from '../../config/serverConfig';
 
-const sequelize = new Sequelize(appConfig.MYSQL.DB, appConfig.MYSQL.USER, appConfig.MYSQL.PASSWORD, {
-    host: appConfig.MYSQL.URL,
-    dialect: appConfig.MYSQL.DIALECT,
+const sequelize = new Sequelize(serverConfig.MYSQL.DB, serverConfig.MYSQL.USER, serverConfig.MYSQL.PASSWORD, {
+    host: serverConfig.MYSQL.URL,
+    dialect: serverConfig.MYSQL.DIALECT,
     define: {
         charset: 'utf8',
         collate: 'utf8_general_ci',
@@ -32,10 +32,9 @@ async function checkDBConnection() {
 }
 
 
-export default {
+export {
     Sequelize,
     sequelize,
     checkDBConnection,
 };
-
 

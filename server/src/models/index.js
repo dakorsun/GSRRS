@@ -1,11 +1,11 @@
-const {sequelize, Sequelize} = require('./../setup/sequelize');
+import {sequelize, Sequelize} from './../setup/sequelize';
 
 const modules = [
-    require('./User'),
-    require('./Race'),
-    require('./UserRace'),
-    require('./Cup'),
-    require('./CupRace'),
+    import('./User'),
+    import('./Race'),
+    import('./UserRace'),
+    import('./Cup'),
+    import('./CupRace'),
 ];
 
 const models = {};
@@ -24,5 +24,5 @@ Object.values(models)
         }
     });
 
-module.exports = models;
+export default models;
 

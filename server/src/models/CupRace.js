@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 
 
-module.exports =  (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
     const CupRace = sequelize.define('CupRace', {
         id: {
             allowNull: false,

@@ -1,4 +1,4 @@
-const serverConfig = require('../serverConfig').default;
+import serverConfig from '../serverConfig';
 
 export default {
     [serverConfig.NODE_ENV]: {
