@@ -56,12 +56,10 @@
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "bundle-loader": "^0.5.6",
     "chance": "^1.0.18",
     "chokidar": "^2.0.4",
     "cli-confirm": "^1.0.1",
     "cross-env": "^5.2.0",
-    "dotenv-webpack": "^1.5.7",
     "enzyme": "^3.10.0",
     "fs-extra": "^7.0.0",
     "jest": "^24.8.0",
@@ -70,10 +68,7 @@
     "prettier": "^1.18.2",
     "resolve-url-loader": "^2.3.0",
     "sequelize-cli": "^5.5.0",
-    "svg-url-loader": "^2.3.3",
-    "webpack": "^4.41.2",
-    "webpack-dev-middleware": "^3.7.2",
-    "webpack-hot-middleware": "^2.25.0"
+    "svg-url-loader": "^2.3.3"
   },
   "engines": {
     "node": "~12.6",
