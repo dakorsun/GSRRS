@@ -45,8 +45,10 @@ export default (sequelize, DataTypes) => {
         return {};
     };
 
-    User.associate = function ({User, Race, Cup, UserRace}) {
-        User.belongsToMany(Race, {through: UserRace})
+    User.associate = function ({User, Run, Cup, CupParticipant}) {
+        User.belongsToMany(Cup, {through: CupParticipant, as: 'participant'});
+        User.hasMany(Run, {foreignKey: 'userId'});
+
     };
     return User;
 };

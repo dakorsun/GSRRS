@@ -1,5 +1,7 @@
-import('../../src/models');
 import {sequelize} from '../../src/setup/sequelize';
+import usersSeed from './seeds/usersSeed'
+import testSeed from './seeds/testSeed'
+
 
 const index = async () => {
     try {
@@ -7,6 +9,9 @@ const index = async () => {
             await sequelize.drop({transaction: t});
             await sequelize.sync({transaction: t});
             console.log('Database tables successfully created');
+
+            const userInstances = await usersSeed(18);
+            await testSeed(userInstances);
 
         });
         process.exit(0)
