@@ -5,5 +5,6 @@ module.exports = {
   devServer: {
     proxy: 'http://localhost:3003'
   },
-  publicPath: '/dist'
+  // lintOnSave: true
+  // publicPath: '/dist'
 };

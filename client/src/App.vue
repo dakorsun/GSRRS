@@ -65,6 +65,13 @@ export default {
   data: () => ({
     //
   }),
+
+
+  // sockets: {
+  //   connect: function () {
+  //     console.log('socket connected')
+  //   },
+  // },
 };
 </script>
 

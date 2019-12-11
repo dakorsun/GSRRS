@@ -6,7 +6,12 @@ import store from './store'
 import * as io from 'socket.io-client'
 import VueSocketIO from 'vue-socket.io';
 
-const socketServer = 'http://localhost:3003';
+const socketServer = process.env.NODE_ENV === 'development' ? 'http://localhost:3003' : '/';
+
+// eslint-disable-next-line
+// console.log('process.env.NODE_ENV: ',process.env.NODE_ENV);
+
+
 
 Vue.use(new VueSocketIO({
         debug: true,
