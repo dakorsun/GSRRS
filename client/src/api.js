@@ -1,4 +1,4 @@
-export axios from 'axios';
+import axios from 'axios';
 
 const API = {
     test: {
@@ -6,3 +6,5 @@ const API = {
         examplePost: (valName) => axios.post('/api/example/cud-action', {valName}).then(res => res.data),
     },
 };
+
+export default API
