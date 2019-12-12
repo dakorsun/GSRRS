@@ -1,7 +1,7 @@
 import socketIO from 'socket.io';
 import {SOCKET_RUN_FINISHED, SOCKET_RUN_RESULT, SOCKET_START_RUN} from '../../../shared/constants/socketActions'
 
-const isTest = process.envNODE_ENV === 'development';
+const isTest = process.env.NODE_ENV === 'development';
 
 function startRun(io, socket, id) {
     console.log('start run socket');
@@ -23,7 +23,7 @@ function startRun(io, socket, id) {
 function testSocketSetup(server){
     const io = socketIO(server);
     io.on('connect', function (socket) {
-        console.log('socket: a client connected: ', socket.id);
+        console.log(`socket: client ${socket.id} connected`);
         let id;
         socket.on('init', racerId => {
             console.log('init id: ', racerId);

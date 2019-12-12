@@ -1,7 +1,8 @@
 import gpio from 'rpi-gpio';
 
-const gpioService = {
+const GPIOService =  {
 
 };
 
-export default gpioService;
+
+export default GPIOService;
