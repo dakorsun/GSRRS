@@ -11,14 +11,16 @@ gpio.on('change', function(channel, value) {
 
 gpiop.on('change')
     .then(function (channel, value) {
-        console.log('Channel ' + channel + ' value is now ' + value);
+        console.log('Promise Channel ' + channel + ' value is now ' + value);
     });
 
 gpiop.setup(RACER_ONE.HALL_PIN, gpiop.DIR_IN, gpiop.EDGE_BOTH);
 
 gpiop.setup(RACER_TWO.HALL_PIN, gpiop.DIR_IN, gpiop.EDGE_BOTH);
 
-const GPIOService = {};
 
 
-export default GPIOService;
+
+export default {
+
+};
