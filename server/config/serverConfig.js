@@ -16,7 +16,15 @@ const serverConfig = {
     JWT_SECRET: process.env.JWT_SECRET,
     JWT_EXPIRATION_TIME: process.env.JWT_EXPIRATION_TIME,
     SOCKETIO: {},
-    PROJECT_NAME: 'GSRRS'
+    PROJECT_NAME: 'GSRRS',
+    RACER_ONE: {
+        HALL_PIN: process.env.RACER_ONE_HALL_PIN,
+        LED_PIN: process.env.RACER_ONE_LED_PIN
+    },
+    RACER_TWO: {
+        HALL_PIN: process.env.RACER_TWO_HALL_PIN,
+        LED_PIN: process.env.RACER_TWO_LED_PIN
+    }
 };
 
 export default Object.freeze(serverConfig);

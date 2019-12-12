@@ -1,14 +1,24 @@
+import {sequelize} from '../setup/sequelize'
+import EventEmitter from 'events'
+import {RACE_RUN, RACE_BATTLE} from "../../util/constants/race";
+
 import '../models';
 import {sequelize, Sequelize} from '../setup/sequelize'
 
 const OP = Sequelize.Op;
 const{Cup, Run, Battle} = sequelize.models;
+let raceInstance;
 
-
-export function getCup(id) {
-    return id ? Cup.findByPk(id) : Cup.findOne({where: {isActual: true}});
+class RaceEmitter extends EventEmitter {
+    constructor(config){
+        super()
+        const {id, type, racer, racers} = config;
+        this.id = id;
+        this.type = type;
+        this.racer = racer;
+        this.racers = racers;
+    }
 }
-
 export async function getQualificationRuns(id, isAll) {
     let cup, runs;
     try {
@@ -23,6 +33,30 @@ export async function getQualificationRuns(id, isAll) {
             return fastestRun;
         }));
 
+
+
+export function getCup(id) {
+    return id ? Cup.findByPk(id) : Cup.findOne({where: {isActual: true}});
+}
+
+function initBattle(id, racers){
+    raceInstance = new RaceEmitter({id, type: RACE_BATTLE, racers});
+}
+
+function initRun(id, racer){
+    raceInstance = new RaceEmitter({id, type: RACE_BATTLE, racer});
+}
+
+function destroyRaceInstance() {
+    raceInstance = undefined;
+}
+
+export default {
+    raceInstance,
+    initBattle,
+    initRun,
+    destroyRaceInstance
+};
         fastestUniqueRuns.sort((firstEl, secondEl) => {
             return firstEl.get('result') > secondEl.get('result') ? 1 : firstEl.get('result') === secondEl.get('result') ? 0 : -1
         });
