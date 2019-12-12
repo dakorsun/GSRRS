@@ -6,6 +6,7 @@ import {sequelize} from '../../../src/setup/sequelize';
 import {getQualificationRuns, getTournamentGrid} from "../../../src/services/raceService";
 import {addUserQualificationRun} from "../../../src/services/userService";
 import {generateRunResultInMs} from "../../../util/common";
+const isTest = process.env.NODE_ENV === 'development';
 
 const {Cup} = sequelize.models;
 const maxRunResult = 40000;
@@ -19,7 +20,7 @@ async function createSingleUserQualificationRecord(user) {
 }
 
 
-export default async function testSeed(userInstances) {
+async function testSeed(userInstances) {
     const [firstUser, secondUser] = userInstances;
 
     //creat cup to work with
@@ -43,3 +44,9 @@ export default async function testSeed(userInstances) {
     let x;
 
 }
+
+async function seed(){
+
+}
+
+export default isTest ? testSeed : seed

@@ -8,7 +8,7 @@
     "server:prod": "cross-env NODE_ENV=production node -r esm ./src/index.js",
     "seq-sync": "node -r esm ./config/database/syncDatabase.js",
     "seq-migrations": "sequelize db:migrate",
-    "seed": "node -r esm config/database/seed.js",
+    "seed": "cross-env NODE_ENV=development node -r esm config/database/seed.js",
     "drop": "node -r esm ./config/database/drop.js"
   },
   "dependencies": {
