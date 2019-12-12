@@ -1,13 +1,47 @@
 import socketIO from 'socket.io';
-import {SOCKET_RACE_STEP} from '../../../shared/constants/socketActions'
+import {SOCKET_RUN_FINISHED, SOCKET_RUN_RESULT, SOCKET_START_RUN} from '../../../shared/constants/socketActions'
 
-console.log(SOCKET_RACE_STEP);
+const isTest = process.env.NODE_ENV === 'development';
 
-export default  server => {
+function startRun(io, socket, id) {
+    console.log('start run socket');
+    let result = 0;
+    const interval = setInterval(function () {
+        result = result + 4;
+        if (!(result % 100)) {
+            console.log('tick: ', result);
+        }
+        if (result >= 1000) {
+            clearInterval(interval);
+            io.emit(SOCKET_RUN_FINISHED, {id, result});
+        } else {
+            io.emit(SOCKET_RUN_RESULT, {id, result});
+        }
+    }, 20);
+}
+
+function testSocketSetup(server){
     const io = socketIO(server);
-    io.on('connection', function (socket) {
-        console.log('socket: a client connected');
+    io.on('connect', function (socket) {
+        console.log(`socket: client ${socket.id} connected`);
+        let id;
+        socket.on('init', racerId => {
+            console.log('init id: ', racerId);
+            id = racerId;
+        });
+        socket.on(SOCKET_START_RUN, function () {
+            startRun(io, socket, id);
+        })
 
-        socket.emit(SOCKET_RACE_STEP);
     });
-};
+}
+
+function socketSetup(server){
+    const io = socketIO(server);
+    io.on('connect', function (socket) {
+
+    })
+}
+
+
+export default isTest ? testSocketSetup : socketSetup;

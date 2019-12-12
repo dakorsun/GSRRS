@@ -11,8 +11,9 @@ gpio.setup(RACER_ONE.HALL_PIN, gpio.DIR_IN, gpio.EDGE_BOTH);
 
 gpio.setup(RACER_TWO.HALL_PIN, gpio.DIR_IN, gpio.EDGE_BOTH);
 
-const gpioService = {
+const GPIOService =  {
 
 };
 
-export default gpioService;
+
+export default GPIOService;
