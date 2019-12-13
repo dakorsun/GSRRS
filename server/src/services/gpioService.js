@@ -2,7 +2,7 @@ import gpio, {promise as gpiop} from 'rpi-gpio';
 
 import serverConfig from '../../config/serverConfig'
 
-const {RACER_ONE, RACER_TWO} = serverConfig;
+const {BIKE_ONE, BIKE_TWO} = serverConfig;
 
 
 gpio.on('change', function(channel, value) {
@@ -14,9 +14,9 @@ gpiop.on('change')
         console.log('Promise Channel ' + channel + ' value is now ' + value);
     });
 
-gpiop.setup(RACER_ONE.HALL_PIN, gpiop.DIR_IN, gpiop.EDGE_BOTH);
+gpiop.setup(BIKE_ONE.HALL_PIN, gpiop.DIR_IN, gpiop.EDGE_BOTH);
 
-gpiop.setup(RACER_TWO.HALL_PIN, gpiop.DIR_IN, gpiop.EDGE_BOTH);
+gpiop.setup(BIKE_TWO.HALL_PIN, gpiop.DIR_IN, gpiop.EDGE_BOTH);
 
 
 

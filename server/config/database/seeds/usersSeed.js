@@ -4,10 +4,12 @@ import _capitalize from 'lodash/capitalize'
 import {USER_ROLES} from "../../../util/constants/user";
 
 const {ROLE_RACER} = USER_ROLES;
-require('../../../src/models');
+import '../../../src/models'
 import {sequelize} from '../../../src/setup/sequelize';
-
 const {User} = sequelize.models;
+
+const isTest = process.env.NODE_ENV === 'development';
+
 
 const users = [
     {
@@ -40,24 +42,30 @@ const userBuilder = (i) => {
 
 // console.log('users tbd:', users);
 
-export default function usersSeed(amount) {
+const usersTestSeed = (amount, t) => {
     console.log('amount: ', amount);
-    return sequelize.transaction(t => {
-        if (amount) {
-            const arr = [];
-            let i = 0;
-            while(i < amount){
-                i++
-                arr.push(userBuilder(i))
-            }
-            console.log('arr: ', arr)
-            return Promise.all(arr.map((user) => {
-                return User.create(user, {transaction: t})
-            }))
-        } else {
-            return Promise.all(users.map(user => {
-                return User.create(user, {transaction: t});
-            }));
+
+    if (amount) {
+        const arr = [];
+        let i = 0;
+        while (i < amount) {
+            i++
+            arr.push(userBuilder(i))
         }
-    })
+        // console.log('users.length: ', arr)
+        return Promise.all(arr.map((user) => {
+            return User.create(user, {transaction: t})
+        }))
+    } else {
+        return Promise.all(users.map(user => {
+            return User.create(user, {transaction: t});
+        }));
+    }
+};
+
+const usersSeed = () => {
+
 }
+
+
+export default isTest ? usersTestSeed : usersSeed;

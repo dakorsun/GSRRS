@@ -4,6 +4,7 @@ const modules = [
     require('./User'),
     require('./Run'),
     require('./Cup'),
+    require('./CupConfig'),
     require('./Battle'),
     require('./CupParticipant'),
 ];

@@ -8,7 +8,9 @@
     "server:prod": "cross-env NODE_ENV=production node -r esm ./src/index.js",
     "seq-sync": "node -r esm ./config/database/syncDatabase.js",
     "seq-migrations": "sequelize db:migrate",
-    "seed": "cross-env NODE_ENV=development node -r esm config/database/seed.js",
+    "seed": "cross-env NODE_ENV=development node -r esm config/database/seeds/execSeed",
+    "seed:prod": "cross-env NODE_ENV=production node -r esm config/database/seeds/execSeed",
+    "script:whole_cup": "cross-env NODE_ENV=development DB_SCRYPT_TYPE=WHOLE_CUP node -r esm config/database/scripts",
     "drop": "node -r esm ./config/database/drop.js"
   },
   "dependencies": {
@@ -59,6 +61,7 @@
     "chance": "^1.0.18",
     "chokidar": "^2.0.4",
     "cli-confirm": "^1.0.1",
+    "console-log-tree": "^1.2.1",
     "cross-env": "^5.2.0",
     "enzyme": "^3.10.0",
     "fs-extra": "^7.0.0",

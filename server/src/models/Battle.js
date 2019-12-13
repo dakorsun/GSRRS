@@ -4,7 +4,7 @@ import Sequelize from 'sequelize';
 import {BATTLE_STAGES} from "../../util/constants/battle";
 const {QUALIFICATION, ONE_EIGHT_FINAL, QUARTER_FINAL, SEMI_FINAL, FINAL} = BATTLE_STAGES;
 
-export default (sequelize, {CHAR, STRING}) => {
+export default (sequelize, {CHAR, STRING, INTEGER}) => {
     const Battle = sequelize.define('Battle', {
         id: {
             allowNull: false,
@@ -21,8 +21,8 @@ export default (sequelize, {CHAR, STRING}) => {
     };
 
     Battle.associate = function ({Battle, User, Run, Cup}) {
-        Battle.belongsTo(Run, {as: 'runnerOne', targetKey: 'userId'});
-        Battle.belongsTo(Run, {as: 'runnerTwo', targetKey: 'userId'});
+        Battle.hasOne(Run, {as: 'runOne'});
+        Battle.hasOne(Run, {as: 'runTwo'});
 
         Battle.belongsTo(Cup, {foreignKey: 'cupId'});
     };
