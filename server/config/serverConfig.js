@@ -17,13 +17,16 @@ const serverConfig = {
     JWT_EXPIRATION_TIME: process.env.JWT_EXPIRATION_TIME,
     SOCKETIO: {},
     PROJECT_NAME: 'GSRRS',
-    RACER_ONE: {
-        HALL_PIN: process.env.RACER_ONE_HALL_PIN,
-        LED_PIN: process.env.RACER_ONE_LED_PIN
+    DEFAULT_BIKE: process.env.DEFAULT_BIKE,
+    BIKE_ONE: {
+        HALL_PIN: process.env.BIKE_ONE_HALL_PIN,
+        LED_PIN: process.env.BIKE_ONE_LED_PIN,
+        GEAR_DEVELOPMENT: process.env.BIKE_ONE_GEAR_DEVELOPMENT
     },
-    RACER_TWO: {
-        HALL_PIN: process.env.RACER_TWO_HALL_PIN,
-        LED_PIN: process.env.RACER_TWO_LED_PIN
+    BIKE_TWO: {
+        HALL_PIN: process.env.BIKE_TWO_HALL_PIN,
+        LED_PIN: process.env.BIKE_TWO_LED_PIN,
+        GEAR_DEVELOPMENT: process.env.BIKE_TWO_GEAR_DEVELOPMENT
     }
 };
 

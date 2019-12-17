@@ -1,11 +1,12 @@
 import {sequelize, Sequelize} from './../setup/sequelize';
 
 const modules = [
-    import('./User'),
-    import('./Race'),
-    import('./UserRace'),
-    import('./Cup'),
-    import('./CupRace'),
+    require('./User'),
+    require('./Run'),
+    require('./Cup'),
+    require('./CupConfig'),
+    require('./Battle'),
+    require('./CupParticipant'),
 ];
 
 const models = {};
