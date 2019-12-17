@@ -31,8 +31,8 @@ const buttons = require('rpi-gpio-buttons')([BIKE_ONE.HALL_PIN]);
 //   console.log('User clicked then pressed button on pin ', pin);
 // });
 
-buttons.on('button_changed', function (pin) {
-	  console.log('Changed button on pin ', pin);
+buttons.on('button_changed', function (pin, args) {
+	  console.log('Changed button on pin ', pin, args);
 });
 
 console.log('gpio setted up');
