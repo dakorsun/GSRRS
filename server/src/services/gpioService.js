@@ -1,5 +1,4 @@
 import gpio, {promise as gpiop} from 'rpi-gpio';
-//import rpi-buttons from 'rpi-gpio-buttons';
 
 import serverConfig from '../../config/serverConfig'
 
@@ -87,7 +86,4 @@ const GPIOService = {
 	gpio
 };
 
-export default {
-
-};
 export default GPIOService;
