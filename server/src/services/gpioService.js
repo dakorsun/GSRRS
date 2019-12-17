@@ -27,10 +27,14 @@ const buttons = require('rpi-gpio-buttons')([BIKE_ONE.HALL_PIN]);
 //   console.log('User clicked button on pin ', pin);
 // });
 
-buttons.on('button_press', function (pin) {
+// buttons.on('button_press', function (pin) {
+//   console.log('User pressed button on pin ', pin);
+// });
+
+buttons.on('button_release', function (pin) {
   console.log('User pressed button on pin ', pin);
 });
-//
+
 // buttons.on('clicked_pressed', function (pin) {
 //   console.log('User clicked then pressed button on pin ', pin);
 // });
