@@ -19,13 +19,13 @@ gpio.on('error', (err)=> {
 
 const buttons = require('rpi-gpio-buttons')([BIKE_ONE.HALL_PIN]);
 
-buttons.on('pressed', function (pin) {
-  console.log('User pressed button on pin ', pin);
-});
-//
-// buttons.on('clicked', function (pin) {
-//   console.log('User clicked button on pin ', pin);
+// buttons.on('pressed', function (pin) {
+//   console.log('User pressed button on pin ', pin);
 // });
+//
+buttons.on('clicked', function (pin) {
+  console.log('User clicked button on pin ', pin);
+});
 //
 // buttons.on('clicked_pressed', function (pin) {
 //   console.log('User clicked then pressed button on pin ', pin);
