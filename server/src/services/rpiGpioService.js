@@ -5,7 +5,6 @@ import serverConfig from '../../config/serverConfig'
 const {BIKE_ONE, BIKE_TWO} = serverConfig;
 
 if (process.env.GPIO_LIB === 'rpi-gpio') {
-
     try {
         gpio.on('connection', () => {
             console.log('gpio interface connected');
