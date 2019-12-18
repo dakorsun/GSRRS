@@ -45,7 +45,7 @@ try {
         console.log('Changed button on pin ', pin);
     });
 
-    gpio.setup(BIKE_TWO.HALL_PIN, gpio.DIR_LOW, gpio.EDGE_BOTH)
+    gpio.setup(BIKE_ONE.HALL_PIN, gpio.DIR_LOW, gpio.EDGE_BOTH);
 
     gpio.on('change', function (channel, value) {
         console.log('Channel ' + channel + ' value is now ' + value);
