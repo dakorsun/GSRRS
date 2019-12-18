@@ -8,8 +8,9 @@ const {BIKE_ONE, BIKE_TWO} = serverConfig;
 try {
     rpio.open(BIKE_ONE.HALL_PIN, rpio.INPUT, rpio.PULL_UP);
 
-    function pollcb(pin)
-    {
+    function pollcb(pin) {
+        console.log('rpio polling')
+
         /*
          * Wait for a small period of time to avoid rapid changes which
          * can't all be caught with the 1ms polling frequency.  If the
@@ -23,7 +24,7 @@ try {
         console.log('Button pressed on pin P%d', pin);
     }
 
-    rpio.poll(BIKE_ONE.HALL_PIN, pollcb, rpio.POLL_LOW);
+    rpio.poll(BIKE_ONE.HALL_PIN, pollcb, rpio.POLL_HIGH);
 } catch (e) {
     console.error('rpio setup error: ', e);
 }
