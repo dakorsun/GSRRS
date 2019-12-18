@@ -17,7 +17,7 @@ gpio.on('error', (err)=> {
 	console.error(err);
 })
 
-const buttons = require('rpi-gpio-buttons')([BIKE_ONE.HALL_PIN, BIKE_TWO.HALL_PIN]);
+const buttons = require('rpi-gpio-buttons')([BIKE_ONE.HALL_PIN]);
 
 buttons.on('pressed', function (pin) {
   console.log('User pressed button on pin ', pin);
@@ -46,6 +46,8 @@ buttons.on('clicked_pressed', function (pin) {
 buttons.on('button_changed', function (pin) {
 	  console.log('Changed button on pin ', pin);
 });
+
+gpio.setup(BIKE_TWO.HALL_PIN, gpio.DIR_LOW, GPIO.EDGE_BOTH)
 
 console.log('gpio setted up');
 
