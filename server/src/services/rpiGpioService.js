@@ -4,6 +4,7 @@ import serverConfig from '../../config/serverConfig'
 
 const {BIKE_ONE, BIKE_TWO} = serverConfig;
 
+
 try {
     gpio.on('connection', () => {
         console.log('gpio interface connected');
@@ -54,12 +55,12 @@ try {
     console.log('gpio setted up');
 
 } catch (e) {
-    console.error('gpio setup error: ', e);
+    console.error('rpi-gpio setup error: ', e);
 }
 
 
-const GPIOService = {
+const rpiGpioService = {
     gpio
 };
 
-export default GPIOService;
+export default rpiGpioService;
