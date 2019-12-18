@@ -47,7 +47,7 @@ buttons.on('button_changed', function (pin) {
 	  console.log('Changed button on pin ', pin);
 });
 
-gpio.setup(BIKE_TWO.HALL_PIN, gpio.DIR_LOW, GPIO.EDGE_BOTH)
+gpio.setup(BIKE_TWO.HALL_PIN, gpio.DIR_LOW, gpio.EDGE_BOTH)
 
 console.log('gpio setted up');
 
