@@ -9,6 +9,7 @@ if (process.env.GPIO_LIB === 'rpio') {
     try {
         // rpio.open(BIKE_ONE.HALL_PIN, rpio.INPUT, rpio.PULL_UP);
         rpio.open(BIKE_ONE.HALL_PIN, rpio.INPUT, rpio.PULL_DOWN);
+        rpio.open(BIKE_ONE.HALL_PIN, rpio.INPUT);
 
         function pollcb(pin) {
             console.log('rpio polling');
