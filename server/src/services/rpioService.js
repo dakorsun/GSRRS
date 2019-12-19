@@ -7,7 +7,8 @@ const {BIKE_ONE, BIKE_TWO} = serverConfig;
 if (process.env.GPIO_LIB === 'rpio') {
 
     try {
-        rpio.open(BIKE_ONE.HALL_PIN, rpio.INPUT, rpio.PULL_UP);
+        // rpio.open(BIKE_ONE.HALL_PIN, rpio.INPUT, rpio.PULL_UP);
+        rpio.open(BIKE_ONE.HALL_PIN, rpio.INPUT, rpio.PULL_DOWN);
 
         function pollcb(pin) {
             console.log('rpio polling');
@@ -25,7 +26,9 @@ if (process.env.GPIO_LIB === 'rpio') {
             console.log('Button pressed on pin P%d', pin);
         }
 
-        rpio.poll(BIKE_ONE.HALL_PIN, pollcb, rpio.POLL_HIGH);
+        // rpio.poll(BIKE_ONE.HALL_PIN, pollcb, rpio.POLL_LOW);
+        // rpio.poll(BIKE_ONE.HALL_PIN, pollcb, rpio.POLL_HIGH);
+        rpio.poll(BIKE_ONE.HALL_PIN, pollcb);
     } catch (e) {
         console.error('rpio setup error: ', e);
     }
