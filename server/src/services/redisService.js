@@ -21,6 +21,6 @@ export async function initiateEvent(id, config) {
 }
 
 
-export function userRunTick(sensor) {
+export function userRunTick(pin) {
 
 }

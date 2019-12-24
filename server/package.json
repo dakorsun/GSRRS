@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "server:raspberry:rpio": "cross-env GPIO_LIB=rpio node -r esm ./src/sensors.js | node -r esm ./src/index.js",
     "server:rpio": "cross-env GPIO_LIB=rpio NODE_ENV=development node -r esm ./src/index.js",
     "server:rpi-gpio": "cross-env GPIO_LIB=rpi-gpio NODE_ENV=development node -r esm ./src/index.js",
     "server": "cross-env NODE_ENV=development node -r esm ./src/index.js",
