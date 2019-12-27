@@ -1,12 +1,14 @@
 import Sequelize from 'sequelize';
 
+import serverConfig from "../../config/serverConfig";
 import {BATTLE_STAGES} from "../../util/constants/battle";
 import {BIKE_ONE, BIKE_TWO} from "../../util/constants/bike";
 const {QUALIFICATION} = BATTLE_STAGES;
 
 
+
 export default (sequelize,  {CHAR, STRING, INTEGER}) => {
-    const Run = sequelize.define('Run', {
+    const SingleRun = sequelize.define('SingleRun', {
         id: {
             allowNull: false,
             primaryKey: true,
@@ -15,6 +17,7 @@ export default (sequelize,  {CHAR, STRING, INTEGER}) => {
         },
         bike: {
             type: STRING,
+            defaultValue: serverConfig.DEFAULT_BIKE,
             validate: {
                 isIn: [[BIKE_ONE, BIKE_TWO]]
             }
@@ -22,16 +25,14 @@ export default (sequelize,  {CHAR, STRING, INTEGER}) => {
         [`${QUALIFICATION.camelCase}Id`]: CHAR(36).BINARY,
         result: INTEGER(15)
     }, {
-        tableName: 'run',
+        tableName: 'singleRun',
     });
 
 
-    Run.associate = function ({Run, Battle, User, Cup}) {
-        Run.belongsTo(User, {foreignKey: 'userId'});
-        Run.belongsTo(Battle, {as: 'runOne'});
-        Run.belongsTo(Battle, {as: 'runTwo'});
-        Run.belongsTo(Cup, {as: QUALIFICATION.camelCase, sourceKey: `${QUALIFICATION.camelCase}Id`, targetKey: 'id'});
+    SingleRun.associate = function ({SingleRun, Battle, User, Cup}) {
+        SingleRun.belongsTo(User, {foreignKey: 'userId'});
+        SingleRun.belongsTo(Cup, {foreignKey: 'cupId'});
 
     };
-    return Run;
+    return SingleRun;
 };

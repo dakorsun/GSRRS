@@ -37,6 +37,7 @@ export default (sequelize, {CHAR, STRING, BOOLEAN, INTEGER}) => {
             defaultValue: 2000,
             allowNull: false
         },
+        isSmallFinal: BOOLEAN,
     }, {
         tableName: 'cupConfig',
     });
@@ -52,7 +53,7 @@ export default (sequelize, {CHAR, STRING, BOOLEAN, INTEGER}) => {
     };
 
     CupConfig.associate = function ({Cup, User, Run, Battle, CupParticipant}) {
-        CupConfig.belongsTo(Cup, {as: 'config'})
+        CupConfig.belongsTo(Cup, {as: 'config',foreignKey: 'cupId'})
     };
     return CupConfig;
 }

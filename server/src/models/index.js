@@ -2,10 +2,11 @@ import {sequelize, Sequelize} from './../setup/sequelize';
 
 const modules = [
     require('./User'),
-    require('./Run'),
+    require('./SingleRun'),
+    require('./Battle'),
+    require('./BattleRun'),
     require('./Cup'),
     require('./CupConfig'),
-    require('./Battle'),
     require('./CupParticipant'),
 ];
 

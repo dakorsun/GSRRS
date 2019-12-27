@@ -40,11 +40,11 @@ export default (sequelize, {CHAR, STRING, BOOLEAN}) => {
         return {};
     };
 
-    Cup.associate = function ({Cup, User, Run, Battle, CupParticipant, CupConfig}) {
+    Cup.associate = function ({Cup, User, SingleRun, Battle, CupParticipant, CupConfig}) {
         Cup.belongsToMany(User, {through: CupParticipant});
 
-        Cup.hasOne(CupConfig, {as: 'config'});
-        Cup.hasMany(Run, {as: {singular: QUALIFICATION.camelCase, plural: QUALIFICATION.camelCase + 's'}, foreignKey: QUALIFICATION.camelCase + 'Id', sourceKey: 'id'});
+        Cup.hasOne(CupConfig, {as: 'config', foreignKey: 'cupId'});
+        Cup.hasMany(SingleRun, {foreignKey: 'cupId'});
         Cup.hasMany(Battle, {foreignKey: 'cupId'});
     };
     return Cup;

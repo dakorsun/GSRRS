@@ -18,8 +18,8 @@ export async function executeBattle(battle){
             "BIKE_TWO_RESULT": BIKE_TWO_CYCLES,
         };
 
-    await initiateEvent(id, config);
-
+    const result = await initiateEvent(id, config);
+    console.log('initiate result: ', result);
 
 
 }

@@ -12,9 +12,9 @@ const testSeed = async () => {
             await sequelize.drop({transaction: t});
             await sequelize.sync({transaction: t});
             console.log('Database tables successfully created');
-            await usersSeed(18, t);
-            await cupSeed();
         });
+        await usersSeed(18);
+        await cupSeed();
     } catch (err) {
         console.error(err);
     }

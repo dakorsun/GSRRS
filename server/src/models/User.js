@@ -20,6 +20,7 @@ export default (sequelize, DataTypes) => {
         },
         firstName: {type: DataTypes.STRING, allowNull: true},
         lastName: {type: DataTypes.STRING, allowNull: true},
+        nickname: DataTypes.STRING,
         gender: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -45,9 +46,21 @@ export default (sequelize, DataTypes) => {
         return {};
     };
 
-    User.associate = function ({User, Run, Cup, CupParticipant}) {
-        User.belongsToMany(Cup, {through: CupParticipant, as: 'participant'});
-        User.hasMany(Run, {foreignKey: 'userId'});
+    User.prototype.toRaceJSON = async function toRaceJSON(){
+        return {
+            id: this.get('id'),
+            firstName: this.get('firstName'),
+            lastName: this.get('lastName'),
+            nickname: this.get('nickname')
+        }
+    };
+
+    User.associate = function ({User, SingleRun, Cup, CupParticipant, Battle, BattleRun}) {
+        User.belongsToMany(Cup, {through: CupParticipant});
+        User.belongsToMany(Battle, {through: BattleRun});
+        // User.belongsToMany(Cup, {as: 'participants', through: CupParticipant});
+        // User.belongsToMany(Cup, {as: {singular: 'participant', plular: 'participants'}, through: CupParticipant});
+        User.hasMany(SingleRun, {foreignKey: 'userId', as: 'singleRuns'});
 
     };
     return User;

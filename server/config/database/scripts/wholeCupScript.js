@@ -31,27 +31,35 @@ async function performOneEightFinalRuns(cupId, oneEightPairs) {
 }
 
 async function printBattlePairsTree(stageName, pairs, fastestRuns) {
-    const printTree = await Promise.all(pairs.map((async (battle, i) => {
-        const userOne = await getUserById(battle.get('runnerOneId'));
-        const userTwo = await getUserById(battle.get('runnerTwoId'));
-        const userOneQualificationRunIndex = fastestRuns.findIndex(run => run.get('userId') === userOne.get('id'));
+    const printTree = pairs.map(((battle, i) => {
+        let x;
+        const [racerOne, racerTwo] = battle.racers;
+        const userOneQualificationRunIndex = fastestRuns.findIndex(run => run.get('userId') === racerOne.id);
         const userOneQualificationRun = fastestRuns[userOneQualificationRunIndex];
-        const userTwoQualificationRunIndex = fastestRuns.findIndex(run => run.get('userId') === userTwo.get('id'));
+        const userOneQualificationRunResult = userOneQualificationRun.get('result')
+        const userTwoQualificationRunIndex = fastestRuns.findIndex(run => run.get('userId') === racerTwo.id);
         const userTwoQualificationRun = fastestRuns[userTwoQualificationRunIndex];
+        const userTwoQualificationRunResult = userTwoQualificationRun.get('result');
         return {
             name: `battle-${ntw.toWordsOrdinal(i + 1)}`,
             children: [
-                {name: `${userOneQualificationRunIndex + 1}) ${userOne.get('firstName')} - ${userOneQualificationRun.get('result') / 1000}`},
-                {name: `${userTwoQualificationRunIndex + 1}) ${userTwo.get('firstName')} - ${userTwoQualificationRun.get('result') / 1000}`}
+                {name: `${userOneQualificationRunIndex + 1}) ${racerOne.firstName} - ${userOneQualificationRunResult / 1000} (${racerOne.id})`},
+                {name: `${userTwoQualificationRunIndex + 1}) ${racerTwo.firstName} - ${userTwoQualificationRunResult / 1000} (${racerTwo.id})`}
             ]
         }
-
-    })));
+    }));
 
     console.log();
     console.log(stageName + ' pairs');
+    console.log('first')
     logTree.log(printTree);
     console.log();
+    // console.log('second')
+    // logTree.log(printTree);
+    // console.log();
+    // console.log('third')
+    // logTree.log(printTree);
+    // console.log();
 }
 
 export default async function wholeCupScript() {
@@ -69,10 +77,7 @@ export default async function wholeCupScript() {
 
     await registerCupParticipants(cupId, users);
 
-    const cupUsers = await cup.getCupParticipants();
-
-
-
+    const cupUsers = await cup.getUsers();
 
     //perform two qualification runs for each
     await qualificationsSeed(cupId, cupUsers);
@@ -86,11 +91,11 @@ export default async function wholeCupScript() {
     const config = {};
     const oneEightPairs = await getOneEightComparedPairs(cupId, config);
 
-    //console log compared pairs
+    // console log compared pairs
     await printBattlePairsTree('One/Eight', oneEightPairs, fastestRuns);
 
     //perform all One/Eight battles
-    await performOneEightFinalRuns(cupId, oneEightPairs);
+    // await performOneEightFinalRuns(cupId, oneEightPairs);
 
 
     process.exit(0);

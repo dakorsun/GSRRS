@@ -5,6 +5,7 @@ export const BATTLE_STAGES_ARR = [
     "ONE_EIGHT_FINAL",
     "QUARTER_FINAL",
     "SEMI_FINAL",
+    "SMALL_FINAL",
     "FINAL",
 ];
 
