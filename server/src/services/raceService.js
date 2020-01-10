@@ -35,7 +35,11 @@ export async function getCupStageBattles(cupId, stage){
     return cup.getBattles({where: {stage}});
 }
 
-//check whether the container includes both puppies
+export async function getBattle(id){
+    return id ? await Battle.findByPk(id) : Battle.findOne({where: {isActual: true}});
+}
+
+//check whether the container includes both racers
 export async function checkBattleUsers(battleId, [userOneId, userTwoId]){
     const battle = await Battle.findByPk(battleId);
     const isUserOne = await battle.hasUser(userOneId);

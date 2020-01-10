@@ -1,11 +1,11 @@
-import Sequelize from 'sequelize';
+import Sequelize, {BOOLEAN} from 'sequelize';
 
 
 import {BATTLE_STAGES, BATTLE_STAGES_ARR} from "../../util/constants/battle";
 
 const {QUALIFICATION, ONE_EIGHT_FINAL, QUARTER_FINAL, SEMI_FINAL, FINAL} = BATTLE_STAGES;
 
-export default (sequelize, {CHAR, STRING, INTEGER}) => {
+export default (sequelize, {CHAR, STRING, BOOLEAN, INTEGER}) => {
     const Battle = sequelize.define('Battle', {
         id: {
             allowNull: false,
@@ -19,10 +19,21 @@ export default (sequelize, {CHAR, STRING, INTEGER}) => {
             validate: {
                 isIn: [[...BATTLE_STAGES_ARR]]
             }
+        },
+        isActual: {
+            defaultValue: null,
+            type: BOOLEAN
         }
     }, {
         tableName: 'battle',
     });
+
+    Battle.prototype.proceedWinner = async function proceedWinner() {
+        const [winner, looser] = await this.getUsers({order: [["result", "ASC"]]});
+        const fullJSON = await this.toFullJSON();
+        console.log(winner.get('id'), looser.get('id'));
+        console.log(fullJSON);
+    };
 
     Battle.prototype.toFullJSON = async function toFullJSON() {
         const cupId = this.get('cupId');

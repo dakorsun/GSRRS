@@ -8,14 +8,14 @@ import seed from '../seeds'
 import {
     getCup,
     getOneEightComparedPairs,
-    getQualificationRuns,
+    getQualificationRuns, getQuarterFinalComparedPairs,
     registerCupParticipants
 } from "../../../src/services/tournamentService";
 import {getUserById} from "../../../src/services/userService";
 import qualificationsSeed from "../seeds/qualificationsSeed";
 
 import {sequelize} from '../../../src/setup/sequelize';
-import {executeBattle} from "./index";
+import {executeBattle} from "./Battle";
 
 const {User, Cup} = sequelize.models;
 
@@ -95,8 +95,9 @@ export default async function wholeCupScript() {
     await printBattlePairsTree('One/Eight', oneEightPairs, fastestRuns);
 
     //perform all One/Eight battles
-    // await performOneEightFinalRuns(cupId, oneEightPairs);
+    await performOneEightFinalRuns(cupId, oneEightPairs);
 
+    const quarterFinalPairs = await getQuarterFinalComparedPairs(cupId, config)
 
     process.exit(0);
 }

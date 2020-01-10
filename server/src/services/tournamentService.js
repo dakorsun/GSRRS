@@ -180,9 +180,6 @@ export async function getOneEightComparedPairs(cupId, {succinctly}) {
     // }))
 }
 
-export async function processBattleResult() {
-
-}
 
 export async function getQuarterFinalComparedPairs(cupId, {succinctly}) {
     const cup = await getCup(cupId);
